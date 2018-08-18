@@ -1,8 +1,8 @@
-import { combinedReducers } from "redux";
+import { combineReducers } from "redux";
 import currentUser from "./currentUser";
 import errors from "./errors";
 
-const rootReducer = combinedReducers({
+const rootReducer = combineReducers({
   currentUser,
   errors
 });
