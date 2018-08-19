@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Segment, Menu, Container, Button } from "semantic-ui-react";
+import { Segment, Menu, Container, Button, Icon } from "semantic-ui-react";
 
 class Navbar extends Component {
   state = {}
@@ -10,7 +10,7 @@ class Navbar extends Component {
   showFixedMenu = () => this.setState({ fixed: true })
 
   render() {
-    
+
     const { fixed } = this.state
 
     return(
@@ -29,8 +29,8 @@ class Navbar extends Component {
         >
           <Container>
             <Link to="/">
-              <Menu.Item active>
-                Home
+              <Menu.Item>
+                <Icon name="earlybirds" size="big"/>
               </Menu.Item>
             </Link>
             <Menu.Item position='right'>
