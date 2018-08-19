@@ -13,9 +13,31 @@ export default class AuthForm extends Component {
     };
   }
 
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const authType = this.props.signUp ? "signup" : "signin";
+    this.props.onAuth(authType, this.state)
+    .then(() => {
+      console.log("LOGGED IN SUCCESSFULLY");
+      this.props.history.push("/");
+    }).catch(() => {
+      return;
+    });
+  }
+
   render() {
     const {email, username, password, profileImageUrl} = this.state;
-    const {heading, buttonText} = this.props;
+    const {heading, buttonText, signUp, signIn, errors, history, removeError} = this.props;
+
+    history.listen(() => {
+      removeError();
+    })
 
     return(
       <div className='login-form'>
@@ -23,16 +45,20 @@ export default class AuthForm extends Component {
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
               <Icon name="earlybirds"/>
-              Log-in to your account
+              {heading}
             </Header>
+            {errors.message && (
+              <Message negative><p>{errors.message}</p></Message>
+            )}
             <Form size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   fluid
-                  icon='user'
+                  icon='mail'
                   iconPosition='left'
                   placeholder='E-mail address'
                   name="email"
+                  id="email"
                   onChange={this.handleChange}
                   value={email}
                 />
@@ -43,17 +69,43 @@ export default class AuthForm extends Component {
                   placeholder='Password'
                   type='password'
                   name="password"
+                  id="password"
                   onChange={this.handleChange}
                 />
-
+                {signUp && (
+                  <div style={{marginBottom: "15px"}}>
+                    <Form.Input
+                      fluid
+                      icon='user'
+                      iconPosition='left'
+                      placeholder='Username'
+                      name="username"
+                      id="username"
+                      onChange={this.handleChange}
+                      value={username}
+                    />
+                    <Form.Input
+                      fluid
+                      icon='user circle'
+                      iconPosition='left'
+                      placeholder='Image URL'
+                      name="profileImageUrl"
+                      id="image-url"
+                      onChange={this.handleChange}
+                      value={profileImageUrl}
+                    />
+                  </div>
+                )}
                 <Button color='teal' fluid size='large'>
-                  Login
+                  {buttonText}
                 </Button>
               </Segment>
             </Form>
-            <Message>
-              New to Chirper? <Link to="signup">Sign Up </Link>
-            </Message>
+            {signIn && (
+              <Message>
+                New to Chirper? <Link to="signup">Sign Up </Link>
+              </Message>
+            )}
           </Grid.Column>
         </Grid>
       </div>
