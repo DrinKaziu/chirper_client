@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Icon, Message, Segment } from 'semantic-ui-react';
 
 export default class AuthForm extends Component {
   constructor(props) {
@@ -24,7 +24,6 @@ export default class AuthForm extends Component {
     const authType = this.props.signUp ? "signup" : "signin";
     this.props.onAuth(authType, this.state)
     .then(() => {
-      console.log("LOGGED IN SUCCESSFULLY");
       this.props.history.push("/");
     }).catch(() => {
       return;

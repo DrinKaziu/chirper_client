@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: rgb(234, 237, 236);
 }
 
 
@@ -25,7 +26,17 @@ body {
   text-shadow: 0 0 8px #66757f
 }
 
+.navbar .navbar-container {
+  background-color: #fff;
+}
 
 .login-form {
   margin-top: 100px;
+}
+
+.nav-image {
+  margin-right: 10px;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50% 50%;
 }
