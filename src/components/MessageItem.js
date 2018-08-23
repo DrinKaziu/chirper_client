@@ -1,7 +1,6 @@
 import React from "react";
 import Moment from "react-moment";
 import { Button, Card, Image } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import DefaultProfileImage from "../images/default-profile-image.jpg";
 
 const MessageItem = ({date, username, text, profileImageUrl, removeMessage, isCorrectUser}) => {
@@ -16,7 +15,7 @@ const MessageItem = ({date, username, text, profileImageUrl, removeMessage, isCo
             {text}
           </Card.Description>
           <Card.Meta>
-            <Moment format="DD.MM.YYYY">{date}</Moment>
+            <Moment format="MM.DD.YYYY">{date}</Moment>
           </Card.Meta>
         </Card.Content>
 
